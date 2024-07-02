@@ -1,6 +1,8 @@
 package com.dnsouzadev.backend.web;
 
 import com.dnsouzadev.backend.domain.CnabService;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +15,7 @@ public class CnabController {
 
     private final CnabService cnabService;
 
-    public CnabController(CnabService cnabService) {
+    public CnabController(CnabService cnabService, Job job, JobLauncher jobLauncher) {
         this.cnabService = cnabService;
     }
 
