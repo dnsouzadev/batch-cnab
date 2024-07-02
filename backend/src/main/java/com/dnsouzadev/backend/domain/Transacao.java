@@ -1,4 +1,4 @@
-package com.dnsouzadev.backend;
+package com.dnsouzadev.backend.domain;
 
 import java.math.BigDecimal;
 import java.sql.Date;

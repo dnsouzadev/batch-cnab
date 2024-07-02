@@ -1,5 +1,7 @@
-package com.dnsouzadev.backend;
+package com.dnsouzadev.backend.job;
 
+import com.dnsouzadev.backend.domain.Transacao;
+import com.dnsouzadev.backend.domain.TransacaoCNAB;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -72,8 +74,7 @@ public class BatchConfig {
         return item -> {
             // whither pattern
           var transacao = new Transacao(
-                  null, item.tipo(), null, null, item.cpf(), item.cartao(), null, item.donoDaLoja().trim(), item.nomeDaLoja().trim())
-                  .withValor(item.valor().divide(BigDecimal.valueOf(100)))
+                  null, item.tipo(), null, item.valor().divide(BigDecimal.valueOf(100)), item.cpf(), item.cartao(), null, item.donoDaLoja().trim(), item.nomeDaLoja().trim())
                   .withData(item.data())
                   .withHora(item.hora());
           return transacao;
