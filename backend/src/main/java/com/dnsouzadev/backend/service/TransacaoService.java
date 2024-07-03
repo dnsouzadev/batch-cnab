@@ -1,5 +1,6 @@
 package com.dnsouzadev.backend.service;
 
+import com.dnsouzadev.backend.entity.TipoTransacao;
 import com.dnsouzadev.backend.entity.Transacao;
 import com.dnsouzadev.backend.entity.TransacaoReport;
 import com.dnsouzadev.backend.repository.TransacaoRepository;
@@ -25,13 +26,17 @@ public class TransacaoService {
 
         transacoes.forEach(transacao -> {
             String nomeDaLoja = transacao.nomeDaLoja();
-            BigDecimal valor = transacao.valor();
+            var tipoTransacao = TipoTransacao.findByTipo(transacao.tipo());
+            BigDecimal valor = transacao.valor().multiply(
+                    tipoTransacao.getSinal()
+            );
 
             reportMap.compute(nomeDaLoja, (key, existingReport) -> {
                 var report = (existingReport != null) ?
                         existingReport : new TransacaoReport(key, BigDecimal.ZERO, new ArrayList<>());
+
                 return report.addToTotal(valor)
-                        .addTransacao(transacao);
+                        .addTransacao(transacao.withValor(valor));
             });
         });
 
