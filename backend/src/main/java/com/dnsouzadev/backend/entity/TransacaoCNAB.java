@@ -1,4 +1,4 @@
-package com.dnsouzadev.backend.domain;
+package com.dnsouzadev.backend.entity;
 
 import java.math.BigDecimal;
 

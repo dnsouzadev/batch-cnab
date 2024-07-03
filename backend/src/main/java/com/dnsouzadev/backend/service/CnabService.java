@@ -1,7 +1,6 @@
-package com.dnsouzadev.backend.domain;
+package com.dnsouzadev.backend.service;
 
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,7 +32,7 @@ public class CnabService {
 
         var jobParameters = new JobParametersBuilder()
                 .addJobParameter("cnab", file.getOriginalFilename(), String.class, true)
-                .addJobParameter("cnabFile", "file:" + targetLocation.toString(), String.class)
+                .addJobParameter("cnabFile", "file:" + targetLocation.toString(), String.class, false)
                 .toJobParameters();
 
         jobLauncher.run(job, jobParameters);

@@ -60,6 +60,12 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>3.3.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jdbc -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jdbc</artifactId>
+			<version>3.3.1</version>
+		</dependency>
 
 	</dependencies>
 
