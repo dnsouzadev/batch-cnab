@@ -1,5 +1,6 @@
 package com.dnsouzadev.backend.job;
 
+import com.dnsouzadev.backend.entity.TipoTransacao;
 import com.dnsouzadev.backend.entity.Transacao;
 import com.dnsouzadev.backend.entity.TransacaoCNAB;
 import org.springframework.batch.core.Job;
@@ -78,12 +79,20 @@ public class BatchConfig {
     @Bean
     ItemProcessor<TransacaoCNAB, Transacao> processor() {
         return item -> {
-            // whither pattern
-          var transacao = new Transacao(
-                  null, item.tipo(), null, item.valor().divide(BigDecimal.valueOf(100)), item.cpf(), item.cartao(), null, item.donoDaLoja().trim(), item.nomeDaLoja().trim())
-                  .withData(item.data())
-                  .withHora(item.hora());
-          return transacao;
+            var tipoTransacao = TipoTransacao.findByTipo(item.tipo());
+            var valorNormalizado = item.valor()
+                    .divide(new BigDecimal(100))
+                    .multiply(tipoTransacao.getSinal());
+
+            var transacao = new Transacao(
+                    null, item.tipo(), null,
+                    valorNormalizado,
+                    item.cpf(), item.cartao(), null,
+                    item.donoDaLoja().trim(), item.nomeDaLoja().trim())
+                    .withData(item.data())
+                    .withHora(item.hora());
+
+            return transacao;
         };
     }
 
