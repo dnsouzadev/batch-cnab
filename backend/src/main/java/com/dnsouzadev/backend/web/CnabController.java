@@ -17,7 +17,7 @@ public class CnabController {
     }
 
     @PostMapping("upload")
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "https://frontend-pagnet-lclb.onrender.com")
     public String upload(@RequestParam("file") MultipartFile file) throws Exception {
         cnabService.uploadCnabFile(file);
         return "Processamento iniciado";
