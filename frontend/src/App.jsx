@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 
 
 const App = () => {
-  const fetchURL = "http://localhost:8080/transacoes";
-  const uploadURL = "http://localhost:8080/cnab/upload";
+  const fetchURL = import.meta.env.VITE_REACT_APP_FETCH_URL;
+  const uploadURL = import.meta.env.VITE_REACT_APP_UPLOAD_URL;
 
   const [file, setFile] = useState(null);
   const [reports, setReports] = useState([]);
