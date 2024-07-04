@@ -4,4 +4,5 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-CMD [ "npm", "run", "preview", "--host", "0.0.0.0" ]
+EXPOSE 5173
+CMD [ "npm", "run", "preview", "--", "--port", "5173","--host", "0.0.0.0" ]
