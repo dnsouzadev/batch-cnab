@@ -22,7 +22,7 @@ git clone https://github.com/giuliana-bezerra/desafio-backend-pagnet.git
 chmod +x start.sh
 ./start.sh
 ```
-- Acessar aplicação em `http://localhost:9090`. O arquivo de upload a ser usado deve ser no formato CNAB, anexado em `files`.
+- Acessar aplicação em `http://localhost:5173`. O arquivo de upload a ser usado deve ser no formato CNAB, anexado em `files`.
 
 ## Ambiente
 
